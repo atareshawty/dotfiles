@@ -1,3 +1,8 @@
+# TODO
+
+- Figure out powerline theme
+- Instructions for installing font
+
 ```bash
 mkdir -p ~/src/atareshawty
 cd ~src/atareshawty
