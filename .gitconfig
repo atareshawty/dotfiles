@@ -1,0 +1,13 @@
+[user]
+  name = Alex Tareshawty
+  email = atareshawty@gmail.com
+[alias]
+	co = checkout
+	com = checkout master
+  aa = add -A
+  amend = commit --amend --no-edit
+  cob = checkout -b
+  ds = diff --staged
+  hist = log --graph
+  logfp = log --first-parent
+  st = status
