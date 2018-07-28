@@ -12,3 +12,4 @@ export EDITOR="$VISUAL"
 
 # Aliases
 alias vim=nvim
+alias src="cd ~/src"
