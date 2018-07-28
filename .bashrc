@@ -19,5 +19,6 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 # Aliases
+alias cdalex="cd ~/src/atareshawty"
+alias cdsrc="cd ~/src"
 alias vim=nvim
-alias src="cd ~/src"

@@ -6,6 +6,7 @@
 	com = checkout master
   aa = add -A
   amend = commit --amend --no-edit
+  br = branch
   cob = checkout -b
   ds = diff --staged
   hist = log --graph
