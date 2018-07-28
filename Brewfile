@@ -1,6 +1,7 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
+brew "bash-git-prompt"
 brew "neovim"
 brew "reattach-to-user-namespace"
 brew "tmux"
