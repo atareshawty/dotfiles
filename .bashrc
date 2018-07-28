@@ -21,4 +21,5 @@ export EDITOR="$VISUAL"
 # Aliases
 alias cdalex="cd ~/src/atareshawty"
 alias cdsrc="cd ~/src"
+alias spec="bundle exec rspec"
 alias vim=nvim
