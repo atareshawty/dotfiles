@@ -9,10 +9,11 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'junegunn/fzf.vim'
   Plug 'kassio/neoterm', {'commit': '0a7a958'}
   Plug 'majutsushi/tagbar', {'commit': 'bef1fa4'}
-  Plug 'mileszs/ack.vim', {'tag': '1.0.9'}
   Plug 'michaeljsmith/vim-indent-object', {'tag': '1.1.2'}
+  Plug 'mileszs/ack.vim', {'tag': '1.0.9'}
   Plug 'pangloss/vim-javascript', {'commit': 'a87c9443'}
   Plug 'scrooloose/nerdtree', {'tag': '5.0.0'}
+  Plug 'terryma/vim-multiple-cursors'
   Plug 'tommcdo/vim-exchange', {'commit': '05d82b8'}
   Plug 'tomtom/tcomment_vim', {'tag': '3.08'}
   Plug 'tpope/vim-endwise', {'commit': '0067ced'}
