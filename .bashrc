@@ -19,6 +19,7 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 # Aliases
+alias be="bundle exec"
 alias cdalex="cd ~/src/atareshawty"
 alias cdsrc="cd ~/src"
 alias spec="bundle exec rspec"
