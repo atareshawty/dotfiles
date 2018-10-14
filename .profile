@@ -4,3 +4,6 @@ if [ -n "$BASH_VERSION" ]; then
         . "$HOME/.bashrc"
     fi
 fi
+
+# Adds cargo to path
+PATH=$PATH:/Users/alex.cargo/bin

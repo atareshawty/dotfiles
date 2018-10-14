@@ -146,4 +146,4 @@ highlight link ALEErrorSign SignColumn
 highlight link ALEWarningSign SignColumn
 
 " faster fzf fuzzy find respecting gitignore
-let $FZF_DEFAULT_COMMAND = '(git ls-tree -r --name-only HEAD || find . -path "*/\.*" -prune -o -type f -print -o -type l -print | sed s/^..//) 2> /dev/null'
+let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
