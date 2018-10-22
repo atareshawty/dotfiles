@@ -20,5 +20,6 @@ export EDITOR="$VISUAL"
 alias be="bundle exec"
 alias cdalex="cd ~/src/atareshawty"
 alias cdsrc="cd ~/src"
+alias myip="curl -4 icanhazip.com"
 alias spec="bundle exec rspec"
 alias vim=nvim
