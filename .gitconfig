@@ -8,6 +8,7 @@
   amend = commit --amend --no-edit
   br = branch
   cob = checkout -b
+  d = diff
   ds = diff --staged
   hist = log --graph
   logfp = log --first-parent

@@ -11,6 +11,7 @@ eval "$(rbenv init -)"
 
 # nodenv
 eval "$(nodenv init -)"
+NODE_PATH="/usr/local/lib/node_modules"
 
 # Default Editor
 export VISUAL=nvim
