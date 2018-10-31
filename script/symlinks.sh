@@ -8,3 +8,4 @@ ln -sfn ~/src/atareshawty/dotfiles/.bashrc ~/.bashrc
 
 # linter rules
 ln -sfn ~/src/atareshawty/dotfiles/linter_rules/rubocop.yaml ~/.rubocop.yml
+ln -sfn ~/src/atareshawty/dotfiles/linter_rules/eslintrc.json ~/.eslintrc.json

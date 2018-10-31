@@ -1,0 +1,7 @@
+{
+  "extends": "@btmills/eslint-config-btmills",
+  "extends": "@btmills/eslint-config-btmills/es5",
+  "extends": "@btmills/eslint-config-btmills/es2015",
+  "extends": "@btmills/eslint-config-btmills/es2016",
+  "extends": "@btmills/eslint-config-btmills/es2017"
+}
