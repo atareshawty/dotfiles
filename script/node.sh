@@ -1,4 +1,6 @@
 #!/bin/bash
 
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
-source ~/.bashrc
+nodenv install 10.12.0
+nodenv global 10.12.0
+
+yarn global add eslint@5.8
