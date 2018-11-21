@@ -5,6 +5,7 @@ tap "homebrew/core"
 brew "bash-git-prompt"
 brew "docker", link: false
 brew "docker-compose", link: false
+brew "exercism"
 brew "gnupg"
 brew "graphviz"
 brew "neovim"
