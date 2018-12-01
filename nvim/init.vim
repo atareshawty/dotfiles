@@ -102,7 +102,7 @@ let test#javascript#mocha#options = '--require test/setup-tests.js --compilers j
 
 " File and folder CtrlP exclusions. See https://github.com/kien/ctrlp.vim
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|node_modules$\|Pods$\|build$',
+  \ 'dir':  '\.git$\|node_modules$\|Pods$\|build$\|target$',
   \ }
 
 let g:wordmotion_prefix = '<LocalLeader>'
