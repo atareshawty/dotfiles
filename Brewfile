@@ -20,7 +20,7 @@ brew "tmux"
 brew "yarn", args: ["without-node"]
 brew "heroku/brew/heroku"
 cask "alfred"
-cask "brave"
+cask "brave-browser"
 cask "caprine"
 cask "dash"
 cask "dropbox"
