@@ -13,6 +13,9 @@ eval "$(rbenv init -)"
 eval "$(nodenv init -)"
 NODE_PATH="/usr/local/lib/node_modules"
 
+# git-completion
+source ~/src/atareshawty/dotfiles/vendor/git-completion.bash
+
 # Default Editor
 export VISUAL=nvim
 export EDITOR="$VISUAL"
