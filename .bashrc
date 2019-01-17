@@ -13,6 +13,9 @@ eval "$(rbenv init -)"
 eval "$(nodenv init -)"
 NODE_PATH="/usr/local/lib/node_modules"
 
+# pyenv
+eval "$(pyenv init -)"
+
 # git-completion
 source ~/src/atareshawty/dotfiles/vendor/git-completion.bash
 
