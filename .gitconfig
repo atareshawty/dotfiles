@@ -1,13 +1,14 @@
 [user]
   name = Alex Tareshawty
-  email = atareshawty@gmail.com
+  email = alex@tareshawty.com
 [alias]
-	co = checkout
-	com = checkout master
   aa = add -A
   amend = commit --amend --no-edit
   br = branch
+  co = checkout
   cob = checkout -b
+  com = checkout master
+  cp = cherry-pick
   d = diff
   ds = diff --staged
   hist = log --graph
