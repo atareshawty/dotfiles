@@ -1,6 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
   Plug 'chaoren/vim-wordmotion', {'commit': '23fc891'}
   Plug 'ctrlpvim/ctrlp.vim', {'tag': '1.79'}
+  Plug 'elixir-editors/vim-elixir'
   Plug 'farmergreg/vim-lastplace', {'tag': 'v3.1.0'}
   Plug 'janko-m/vim-test', {'commit': 'ee2b01e'}
   Plug 'jlanzarotta/bufexplorer', {'tag': 'v7.4.6'}
