@@ -42,6 +42,8 @@ set clipboard=unnamed
 autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 autocmd BufNewFile,BufRead *.txt setlocal spell spelllang=en_us
 autocmd BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
+au BufRead,BufNewFile *.io		set filetype=io
+
 autocmd QuickFixCmdPost *grep* cwindow
 
 " trailing whitespace
