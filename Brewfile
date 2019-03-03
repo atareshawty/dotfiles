@@ -8,6 +8,7 @@ brew "readline"
 brew "docker-compose", link: false
 brew "elixir"
 brew "exercism"
+brew "fd"
 brew "gnupg"
 brew "graphviz"
 brew "jq"
