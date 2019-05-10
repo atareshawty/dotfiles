@@ -9,6 +9,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'kassio/neoterm', {'commit': '0a7a958'}
+  Plug 'ledger/vim-ledger', {'commit': '6eb3bb21aa979cc295d0480b2179938c12b33d0d'}
   Plug 'majutsushi/tagbar', {'commit': 'bef1fa4'}
   Plug 'michaeljsmith/vim-indent-object', {'tag': '1.1.2'}
   Plug 'mileszs/ack.vim', {'tag': '1.0.9'}
