@@ -32,3 +32,8 @@ alias ls="ls -GFh"
 alias myip="curl -4 icanhazip.com"
 alias spec="bundle exec rspec"
 alias vim="nvim"
+
+# Things I want to keep private
+if [ -f ~/.bashrc_private ]; then
+  source ~/.bashrc_private
+fi
