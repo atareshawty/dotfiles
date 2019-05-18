@@ -11,6 +11,7 @@
   cp = cherry-pick
   d = diff
   ds = diff --staged
+  grepc = grep --ignore-case
   hist = log --graph
   logfp = log --first-parent
   st = status
