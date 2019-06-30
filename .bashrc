@@ -37,3 +37,5 @@ alias vim="nvim"
 if [ -f ~/.bashrc_private ]; then
   source ~/.bashrc_private
 fi
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
