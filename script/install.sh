@@ -5,3 +5,4 @@
 ./script/docker.sh
 ./script/ruby.sh
 ./script/node.sh
+./script/rust.sh
