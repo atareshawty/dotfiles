@@ -29,10 +29,11 @@ alias be="bundle exec"
 alias cdalex="cd ~/src/atareshawty"
 alias cdsrc="cd ~/src"
 alias dotfiles="cd ~/src/atareshawty/dotfiles"
-alias ls="ls -GFh"
 alias la="ls -al"
+alias ls="ls -GFh"
 alias myip="curl -4 icanhazip.com"
 alias spec="bundle exec rspec"
+alias tf='terraform'
 alias vim="nvim"
 
 # Things I want to keep private
