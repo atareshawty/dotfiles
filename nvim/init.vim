@@ -8,7 +8,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'jtratner/vim-flavored-markdown', {'commit': '4a70aa2'}
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
-  Plug 'kassio/neoterm', {'commit': '0a7a958'}
+  Plug 'kassio/neoterm', {'commit': 'f6c22fd'}
   Plug 'ledger/vim-ledger', {'commit': '6eb3bb21aa979cc295d0480b2179938c12b33d0d'}
   Plug 'majutsushi/tagbar', {'commit': 'bef1fa4'}
   Plug 'michaeljsmith/vim-indent-object', {'tag': '1.1.2'}
