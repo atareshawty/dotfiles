@@ -14,6 +14,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'michaeljsmith/vim-indent-object', {'tag': '1.1.2'}
   Plug 'mileszs/ack.vim', {'tag': '1.0.9'}
   Plug 'mxw/vim-jsx', {'tag': 'ffc0bfd'}
+  Plug 'nathangrigg/vim-beancount', {'commit': '8054352c43168ece62094dfc8ec510e347e19e3c'}
   Plug 'pangloss/vim-javascript', {'commit': 'dd84369d'}
   Plug 'scrooloose/nerdtree', {'tag': '5.0.0'}
   Plug 'terryma/vim-multiple-cursors'
