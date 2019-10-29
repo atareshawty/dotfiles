@@ -6,3 +6,4 @@
 ./script/ruby.sh
 ./script/node.sh
 ./script/rust.sh
+./script/crontab.sh
