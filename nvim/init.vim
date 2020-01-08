@@ -25,8 +25,9 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-surround', {'tag': 'v2.1'}
   Plug 'vim-airline/vim-airline', {'tag': 'v0.8'}
   Plug 'vim-airline/vim-airline-themes', {'commit': '13bad30'}
+  Plug 'vim-erlang/vim-erlang-runtime', {'commit': 'bba638c6ff658201fd6cd3cacc96cd4c7f63258c'}
   Plug 'vim-scripts/argtextobj.vim', {'tag': '1.1.1'}
-  Plug 'w0rp/ale', {'commit': '14679f0bd'}
+  Plug 'w0rp/ale', {'commit': '4afbf2f25dc0ce86b118261b0cfb904c80ae6ba0'}
 call plug#end()
 
 set dir=/tmp//

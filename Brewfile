@@ -13,6 +13,7 @@ brew "bash-git-prompt"
 brew "docker", link: false
 brew "docker-compose", link: false
 brew "doctl"
+brew "erlang", link: false
 brew "elixir"
 brew "fd"
 brew "geckodriver"
