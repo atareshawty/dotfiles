@@ -15,6 +15,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'mileszs/ack.vim', {'tag': '1.0.9'}
   Plug 'mxw/vim-jsx', {'tag': 'ffc0bfd'}
   Plug 'nathangrigg/vim-beancount', {'commit': '8054352c43168ece62094dfc8ec510e347e19e3c'}
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'pangloss/vim-javascript', {'commit': 'dd84369d'}
   Plug 'scrooloose/nerdtree', {'tag': '5.0.0'}
   Plug 'terryma/vim-multiple-cursors'
@@ -154,3 +155,18 @@ highlight link ALEWarningSign SignColumn
 
 " faster fzf fuzzy find respecting gitignore
 let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+" coc config
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+" coc plugins (install with :CocInstall <foo>)
+" rust: https://github.com/neoclide/coc-rls

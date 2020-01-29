@@ -11,3 +11,4 @@ rustup update
 
 # Install the formatter
 rustup component add rustfmt --toolchain stable-x86_64-apple-darwin
+rustup component add rls rust-analysis rust-src
