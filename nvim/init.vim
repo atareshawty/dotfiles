@@ -57,6 +57,7 @@ function! ClearTerminalTransform(cmd) abort
 endfunction
 
 nmap <silent> <C-P> :Files<CR>
+nmap <silent> <LocalLeader>t :Ttoggle<CR>
 nmap <silent> <LocalLeader>nt :NERDTreeToggle<CR>
 nmap <silent> <LocalLeader>rb :wa <bar> :TestFile<CR>
 nmap <silent> <LocalLeader>rf :wa <bar> :TestNearest<CR>
