@@ -17,3 +17,7 @@
   logfp = log --first-parent
   st = status
   wip = !git add -A && git commit -m "wip"
+[core]
+  pager = delta --plus-color="#012800" --minus-color="red"
+[interactive]
+  diffFilter = delta --color-only
