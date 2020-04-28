@@ -114,7 +114,7 @@ highlight link ALEErrorSign SignColumn
 highlight link ALEWarningSign SignColumn
 
 " faster fzf fuzzy find respecting gitignore
-let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!target/*"'
 
 " coc config
 " use <tab> for trigger completion and navigate to the next complete item
