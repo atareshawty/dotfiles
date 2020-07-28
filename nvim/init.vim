@@ -3,6 +3,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'chaoren/vim-wordmotion'
   " Reopens file to last edit position
   Plug 'farmergreg/vim-lastplace', {'tag': 'v3.2.1'}
+  Plug 'hashivim/vim-terraform', {'commit': '552daab4'}
   Plug 'janko-m/vim-test', {'commit': '8300ee6'}
   Plug 'jlanzarotta/bufexplorer', {'tag': 'v7.4.6'}
   Plug 'jtratner/vim-flavored-markdown', {'commit': '4a70aa2'}
