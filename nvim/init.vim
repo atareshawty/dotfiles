@@ -57,6 +57,12 @@ function! ClearTerminalTransform(cmd) abort
   return 'clear;'.a:cmd
 endfunction
 
+function! SourceIfExists(file)
+  if filereadable(expand(a:file))
+    exe 'source' a:file
+  endif
+endfunction
+
 nmap <silent> <C-P> :Files<CR>
 nmap <silent> <LocalLeader>t :Ttoggle<CR>
 nmap <silent> <LocalLeader>nt :NERDTreeToggle<CR>
@@ -131,3 +137,5 @@ inoremap <silent><expr> <Tab>
 
 " coc plugins (install with :CocInstall <foo>)
 " rust: https://github.com/neoclide/coc-rls
+
+call SourceIfExists("~/.config/nvim/private.vim")
