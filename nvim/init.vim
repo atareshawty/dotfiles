@@ -1,6 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
   " Changes the definition of a word for better navigation
   Plug 'chaoren/vim-wordmotion'
+  Plug 'editorconfig/editorconfig-vim', {'tag': 'v1.1.1'}
   " Reopens file to last edit position
   Plug 'farmergreg/vim-lastplace', {'tag': 'v3.2.1'}
   Plug 'hashivim/vim-terraform', {'commit': '552daab4'}
