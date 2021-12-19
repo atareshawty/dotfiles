@@ -1,0 +1,27 @@
+#!/usr/bin/env RBENV_VERSION=3.0.3 ruby
+
+lines = $stdin.read.chomp.split("\n").map(&:chomp)
+effected_files = lines.map do |line|
+  line
+    .split(/\s+/)
+    .detect { |l| l.match?(%r{^(.+)/([^/]+)$}) }
+end.compact
+
+groups = effected_files.group_by do |line|
+  next :ruby if File.extname(line).match?(/\.rb/)
+  next :javascript if File.extname(line).match?(/\.js|\.jsx/)
+
+  :unknown
+end
+
+groups[:ruby].tap do |ruby_files|
+  next unless ruby_files
+
+  puts `bundle exec rubocop -a #{ruby_files.join(" ")}`
+end
+
+groups[:javascript].tap do |javascript_files|
+  next unless javascript_files
+
+  puts `yarn eslint --fix #{javascript_files.join(" ")}`
+end
