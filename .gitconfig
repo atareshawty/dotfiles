@@ -17,3 +17,5 @@
   logfp = log --first-parent
   st = status
   wip = !git add -A && git commit -m "wip"
+[pull]
+	rebase = false
