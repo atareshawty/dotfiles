@@ -1,27 +1,58 @@
 #!/usr/bin/env RBENV_VERSION=3.0.3 ruby
 
-lines = $stdin.read.chomp.split("\n").map(&:chomp)
-effected_files = lines.map do |line|
-  line
-    .split(/\s+/)
-    .detect { |l| l.match?(%r{^(.+)/([^/]+)$}) }
-end.compact
+require "fileutils"
+require "json"
+require "pathname"
 
-groups = effected_files.group_by do |line|
-  next :ruby if File.extname(line).match?(/\.rb/)
-  next :javascript if File.extname(line).match?(/\.js|\.jsx/)
+cache_file_dir = Pathname.new(Dir.home).join(".git-lint")
+cache_file_loc = cache_file_dir.join("last-run.json")
 
-  :unknown
+def lint_file_groups(groups)
+  groups[:ruby].tap do |ruby_files|
+    next unless ruby_files
+
+    puts `bundle exec rubocop -a #{ruby_files.join(" ")}`
+  end
+
+  groups[:javascript].tap do |javascript_files|
+    next unless javascript_files
+
+    puts `yarn eslint --fix #{javascript_files.join(" ")}`
+  end
 end
 
-groups[:ruby].tap do |ruby_files|
-  next unless ruby_files
+FileUtils.mkdir_p(cache_file_dir)
+groups = {}
 
-  puts `bundle exec rubocop -a #{ruby_files.join(" ")}`
+if ARGF.argv == ["--last"] && cache_file_loc.exist?
+  groups = JSON.parse(File.read(cache_file_loc)).transform_keys(&:to_sym)
+  puts "Using previous run"
+else
+  effected_files = ARGF.readlines.map do |line|
+    line
+      .split(/\s+/)
+      .detect { |l| l.match?(%r{^(.+)/([^/]+)$}) }
+  end.compact
+  effected_files.select! { |f| File.exist?(f) }
+
+  groups = effected_files.group_by do |line|
+    next :ruby if File.extname(line).match?(/\.rb/)
+    next :javascript if File.extname(line).match?(/\.js|\.jsx/)
+
+    :unknown
+  end
+
+  File.open(cache_file_loc, "w+") do |file|
+    file.puts(JSON.dump(groups))
+    file.close
+  end
 end
 
-groups[:javascript].tap do |javascript_files|
-  next unless javascript_files
-
-  puts `yarn eslint --fix #{javascript_files.join(" ")}`
+puts "Linting the following files:"
+groups.each_pair do |file_type, files|
+  puts file_type
+  puts "\t#{files.join("\n\t")}"
+  puts ""
 end
+
+lint_file_groups(groups)
