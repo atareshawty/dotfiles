@@ -5,6 +5,7 @@ call plug#begin('~/.config/nvim/plugged')
   " Reopens file to last edit position
   Plug 'farmergreg/vim-lastplace', {'tag': 'v3.2.1'}
   Plug 'hashivim/vim-terraform', {'commit': '552daab4'}
+  Plug 'HerringtonDarkholme/yats.vim' " Dep of vim-jsx-pretty
   Plug 'janko-m/vim-test', {'commit': '8300ee6'}
   Plug 'jlanzarotta/bufexplorer', {'tag': 'v7.4.6'}
   Plug 'jtratner/vim-flavored-markdown', {'commit': '4a70aa2'}
@@ -12,6 +13,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'junegunn/fzf.vim'
   Plug 'kassio/neoterm', {'commit': '5146f7e'}
   Plug 'ledger/vim-ledger', {'commit': '6eb3bb21aa979cc295d0480b2179938c12b33d0d'}
+  Plug 'maxmellon/vim-jsx-pretty'
   Plug 'mxw/vim-jsx', {'tag': 'ffc0bfd'}
   Plug 'nathangrigg/vim-beancount', {'commit': '2f970a0c826275f7d07fa145ba9a35c15b15232d'}
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -23,6 +25,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-endwise', {'commit': '0067ced'}
   Plug 'vim-airline/vim-airline', {'tag': 'v0.8'}
   Plug 'w0rp/ale', {'commit': '4afbf2f25dc0ce86b118261b0cfb904c80ae6ba0'}
+  Plug 'yuezk/vim-js' " Dep of vim-jsx-pretty
 call plug#end()
 
 set dir=/tmp//
@@ -112,7 +115,7 @@ let g:ale_sign_error = 'e'
 let g:ale_sign_warning = 'w'
 
 " message format
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%/%code%]'
 
 " always show the sign column
 let g:ale_sign_column_always = 1
