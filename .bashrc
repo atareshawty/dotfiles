@@ -8,6 +8,9 @@ if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
   source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 
+# brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # rbenv
 eval "$(rbenv init -)"
 
