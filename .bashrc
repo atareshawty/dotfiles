@@ -19,6 +19,8 @@ eval "$(nodenv init -)"
 NODE_PATH="/usr/local/lib/node_modules"
 
 # pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/shims:$PATH"
 eval "$(pyenv init -)"
 export PATH="/Users/alex/.pyenv/shims:${PATH}"
 
