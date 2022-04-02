@@ -101,6 +101,9 @@ let g:airline_theme='onehalfdark'
 " Exit vim when only nerd tree is in buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+" ###### Beancount ######
+let b:beancount_root = '~/src/atareshawty/ledger/main.bean'
+
 " ###### ALE ######
 
 " when to lint and save
@@ -159,10 +162,14 @@ function! s:show_documentation()
 endfunction
 
 " coc plugins (install with :CocInstall <foo>)
+" python: https://github.com/fannheyward/coc-pyright
 " rust: https://github.com/neoclide/coc-rls
 " typescript: https://github.com/neoclide/coc-tsserver
 
-" ###### Beancount ######
-let b:beancount_root = '~/src/atareshawty/ledger/main.bean'
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 call SourceIfExists("~/.config/nvim/private.vim")

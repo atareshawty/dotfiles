@@ -1,3 +1,4 @@
 {
-  "suggest.autoTrigger": "always"
+  "suggest.autoTrigger": "always",
+  "tsserver.enableJavascript": false
 }

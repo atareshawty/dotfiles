@@ -7,3 +7,4 @@ fi
 
 # Adds cargo to path
 PATH=$PATH:/Users/alex.cargo/bin
+. "$HOME/.cargo/env"
