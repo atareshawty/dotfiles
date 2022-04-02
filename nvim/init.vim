@@ -18,13 +18,10 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'pangloss/vim-javascript', {'commit': 'd6e137563c47fb59f26ed25d044c0c7532304f18'}
   Plug 'scrooloose/nerdtree', {'tag': '5.0.0'}
   Plug 'sonph/onehalf', { 'rtp': 'vim' }
-  Plug 'terryma/vim-multiple-cursors'
   Plug 'tomtom/tcomment_vim', {'tag': '3.08'}
   " Automatically end certain structures (ruby blocks, etc)
   Plug 'tpope/vim-endwise', {'commit': '0067ced'}
   Plug 'vim-airline/vim-airline', {'tag': 'v0.8'}
-  Plug 'vim-airline/vim-airline-themes', {'commit': '13bad30'}
-  Plug 'vim-erlang/vim-erlang-runtime', {'commit': 'bba638c6ff658201fd6cd3cacc96cd4c7f63258c'}
   Plug 'w0rp/ale', {'commit': '4afbf2f25dc0ce86b118261b0cfb904c80ae6ba0'}
 call plug#end()
 
@@ -89,6 +86,7 @@ let g:wordmotion_mappings = {
 " Sort tags in order of appearance by default
 let g:tagbar_sort = 0
 
+" ### Syntax Highlighting ###
 syntax on
 set t_Co=256
 set cursorline
@@ -102,7 +100,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 " ###### ALE ######
 
-" when to lint
+" when to lint and save
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
@@ -135,7 +133,7 @@ highlight link ALEWarningSign SignColumn
 " faster fzf fuzzy find respecting gitignore
 let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!target/*" --glob "!node_modules/" --glob "!tmp/"'
 
-" coc config
+" ###### COC ######
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -147,6 +145,7 @@ inoremap <silent><expr> <Tab>
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
 
+" Hover and Shift-K to show documentation of current hover target
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim', 'help'], &filetype) >= 0)
