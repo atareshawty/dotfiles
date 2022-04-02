@@ -159,4 +159,7 @@ endfunction
 " rust: https://github.com/neoclide/coc-rls
 " typescript: https://github.com/neoclide/coc-tsserver
 
+" ###### Beancount ######
+let b:beancount_root = '~/src/atareshawty/ledger/main.bean'
+
 call SourceIfExists("~/.config/nvim/private.vim")
