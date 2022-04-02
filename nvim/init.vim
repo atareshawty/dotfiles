@@ -17,6 +17,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'pangloss/vim-javascript', {'commit': 'd6e137563c47fb59f26ed25d044c0c7532304f18'}
   Plug 'scrooloose/nerdtree', {'tag': '5.0.0'}
+  Plug 'sonph/onehalf', { 'rtp': 'vim' }
   Plug 'terryma/vim-multiple-cursors'
   Plug 'tomtom/tcomment_vim', {'tag': '3.08'}
   " Automatically end certain structures (ruby blocks, etc)
@@ -89,7 +90,10 @@ let g:wordmotion_mappings = {
 let g:tagbar_sort = 0
 
 syntax on
-colorscheme onedark
+set t_Co=256
+set cursorline
+colorscheme onehalflight
+let g:airline_theme='onehalfdark'
 
 " ### NerdTree ###
 
