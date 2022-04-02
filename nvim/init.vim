@@ -103,6 +103,7 @@ let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_filetype_changed = 1
+let g:ale_fix_on_save = 1
 
 " add sign column emoticons
 let g:ale_sign_error = 'e'
@@ -114,6 +115,12 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " always show the sign column
 let g:ale_sign_column_always = 1
 let g:ale_set_higlights = 1
+
+let g:ale_fixers = {
+\ 'javascript': ['prettier', 'eslint'],
+\ 'typescript': ['prettier', 'eslint'],
+\ 'typescriptreact': ['prettier', 'eslint'],
+\}
 
 " reset sign column background colors
 highlight link ALEError SignColumn
@@ -136,7 +143,17 @@ inoremap <silent><expr> <Tab>
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
 
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim', 'help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
 " coc plugins (install with :CocInstall <foo>)
 " rust: https://github.com/neoclide/coc-rls
+" typescript: https://github.com/neoclide/coc-tsserver
 
 call SourceIfExists("~/.config/nvim/private.vim")
