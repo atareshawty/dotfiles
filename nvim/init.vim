@@ -13,9 +13,9 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'kassio/neoterm', {'commit': '5146f7e'}
   Plug 'ledger/vim-ledger', {'commit': '6eb3bb21aa979cc295d0480b2179938c12b33d0d'}
   Plug 'mxw/vim-jsx', {'tag': 'ffc0bfd'}
-  Plug 'nathangrigg/vim-beancount', {'commit': '8054352c43168ece62094dfc8ec510e347e19e3c'}
+  Plug 'nathangrigg/vim-beancount', {'commit': '2f970a0c826275f7d07fa145ba9a35c15b15232d'}
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'pangloss/vim-javascript', {'commit': 'dd84369d'}
+  Plug 'pangloss/vim-javascript', {'commit': 'd6e137563c47fb59f26ed25d044c0c7532304f18'}
   Plug 'scrooloose/nerdtree', {'tag': '5.0.0'}
   Plug 'terryma/vim-multiple-cursors'
   Plug 'tomtom/tcomment_vim', {'tag': '3.08'}
