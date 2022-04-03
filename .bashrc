@@ -17,6 +17,7 @@ NODE_PATH="/usr/local/lib/node_modules"
 
 # pyenv
 eval "$(pyenv init -)"
+export PATH="/Users/alex/.pyenv/shims:${PATH}"
 
 # git-completion
 source ~/src/atareshawty/dotfiles/vendor/git-completion.bash
@@ -46,6 +47,5 @@ fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/src/atareshawty/dotfiles/snippets"
