@@ -129,6 +129,7 @@ let g:ale_fixers.javascript = ['prettier', 'eslint']
 let g:ale_fixers.typescript = ['prettier', 'eslint']
 let g:ale_fixers.typescriptreact = ['prettier', 'eslint']
 let g:ale_fixers.terraform = ['terraform']
+let g:ale_fixers.python = ['black']
 
 " reset sign column background colors
 highlight link ALEError SignColumn
