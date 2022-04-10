@@ -118,11 +118,11 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_sign_column_always = 1
 let g:ale_set_higlights = 1
 
-let g:ale_fixers = {
-\ 'javascript': ['prettier', 'eslint'],
-\ 'typescript': ['prettier', 'eslint'],
-\ 'typescriptreact': ['prettier', 'eslint'],
-\}
+let g:ale_fixers = {}
+let g:ale_fixers.javascript = ['prettier', 'eslint']
+let g:ale_fixers.typescript = ['prettier', 'eslint']
+let g:ale_fixers.typescriptreact = ['prettier', 'eslint']
+let g:ale_fixers.terraform = ['terraform']
 
 " reset sign column background colors
 highlight link ALEError SignColumn
