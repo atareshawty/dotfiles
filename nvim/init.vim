@@ -139,7 +139,7 @@ highlight link ALEErrorSign SignColumn
 highlight link ALEWarningSign SignColumn
 
 " faster fzf fuzzy find respecting gitignore
-let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!target/*" --glob "!node_modules/" --glob "!tmp/"'
+let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!target/*" --glob "!node_modules/" --glob "!tmp/" --glob "!__pycache__"'
 
 " ###### COC ######
 " use <tab> for trigger completion and navigate to the next complete item
