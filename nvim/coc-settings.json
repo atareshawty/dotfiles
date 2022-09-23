@@ -1,4 +1,14 @@
 {
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "eslint.workingDirectories": ["web", "extension"],
+  "prettier.disableSuccessMessage": true,
   "suggest.autoTrigger": "always",
   "tsserver.enableJavascript": false
 }
