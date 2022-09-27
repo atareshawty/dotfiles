@@ -2,6 +2,7 @@
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "javascriptreact",
+    "python",
     "typescript",
     "typescriptreact"
   ],
@@ -9,6 +10,9 @@
   "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
   "eslint.workingDirectories": ["web", "extension"],
   "prettier.disableSuccessMessage": true,
+  "python.formatting.provider": "black",
+  "python.linting.flake8Enabled": true,
+  "python.linting.enabled": true,
   "suggest.autoTrigger": "always",
   "tsserver.enableJavascript": false
 }

@@ -184,4 +184,17 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+
+" Manually autoformat on save for pyton files
+" https://github.com/fannheyward/coc-pyright/issues/229#issuecomment-754231643
+aug python
+  au!
+  au BufWrite *.py call CocAction('format')
+aug END
+
+" This makes the time before it updates your hover faster
+" set updatetime=300
+" This makes it so that you can click a variable and a float window pops up
+" autocmd CursorHold * silent call CocActionAsync('doHover')
+
 call SourceIfExists("~/.config/nvim/private.vim")
