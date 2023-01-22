@@ -12,7 +12,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'junegunn/fzf.vim'
   Plug 'kassio/neoterm', {'commit': '5146f7e'}
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  " Plug 'scrooloose/nerdtree', {'tag': '5.0.0'}
+  Plug 'scrooloose/nerdtree', {'tag': '5.0.0'}
   Plug 'sonph/onehalf', { 'rtp': 'vim' }
   Plug 'tomtom/tcomment_vim', {'tag': '3.08'}
   " " Automatically end certain structures (ruby blocks, etc)
@@ -143,14 +143,14 @@ let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.g
 
 " ###### COC ######
 " use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
+function! CheckBackspace() abort
   let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
 
 " Hover and Shift-K to show documentation of current hover target
@@ -166,15 +166,17 @@ endfunction
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#install-extensions
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
+  \ 'coc-flow',
   \ 'coc-pyright',
   \ 'coc-rls',
+  \ 'coc-rust-analyzer',
 \ ]
 
-if (isdirectory('./node_modules') && isdirectory('./node_modules/prettier')) || (isdirectory('./web/node_modules') && isdirectory('./web/node_modules/prettier') || (isdirectory('./extenson/node_modules') && isdirectory('./extensions/node_modules/prettier')))
+if (isdirectory('./node_modules') && isdirectory('./node_modules/prettier')) || (isdirectory('./web/node_modules') && isdirectory('./web/node_modules/prettier')) || (isdirectory('./extenson/node_modules') && isdirectory('./extensions/node_modules/prettier'))
   let g:coc_global_extensions += ['coc-prettier']
 endif
 
-if (isdirectory('./node_modules') && isdirectory('./node_modules/eslint')) || (isdirectory('./web/node_modules') && isdirectory('./web/node_modules/eslint') || (isdirectory('./extenson/node_modules') && isdirectory('./extensions/node_modules/eslint')))
+if (isdirectory('./node_modules') && isdirectory('./node_modules/eslint')) || (isdirectory('./web/node_modules') && isdirectory('./web/node_modules/eslint')) || (isdirectory('./extenson/node_modules') && isdirectory('./extensions/node_modules/eslint'))
   let g:coc_global_extensions += ['coc-eslint']
 endif
 
@@ -183,7 +185,6 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
 
 " Manually autoformat on save for pyton files
 " https://github.com/fannheyward/coc-pyright/issues/229#issuecomment-754231643
