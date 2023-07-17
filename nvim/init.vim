@@ -141,6 +141,11 @@ highlight link ALEWarningSign SignColumn
 " faster fzf fuzzy find respecting gitignore
 let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!target/*" --glob "!node_modules/" --glob "!tmp/" --glob "!__pycache__"'
 
+" setup code folding for JSON files
+aug json
+  set foldmethod=syntax
+aug END
+
 " ###### COC ######
 " use <tab> for trigger completion and navigate to the next complete item
 function! CheckBackspace() abort
