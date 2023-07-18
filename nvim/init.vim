@@ -142,9 +142,8 @@ highlight link ALEWarningSign SignColumn
 let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!target/*" --glob "!node_modules/" --glob "!tmp/" --glob "!__pycache__"'
 
 " setup code folding for JSON files
-aug json
-  set foldmethod=syntax
-aug END
+autocmd FileType json setlocal foldmethod=syntax
+autocmd FileType json setlocal foldlevel=1
 
 " ###### COC ######
 " use <tab> for trigger completion and navigate to the next complete item
