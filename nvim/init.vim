@@ -25,6 +25,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'HerringtonDarkholme/yats.vim' " Dep of vim-jsx-pretty
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'pangloss/vim-javascript', {'commit': 'c470ce1399a544fe587eab950f571c83cccfbbdc'}
+  Plug 'elixir-editors/vim-elixir', {'commit': '6dd03f87d825bf0a9f8611eb54076c7952d4f15c'}
 call plug#end()
 
 set dir=/tmp//
@@ -174,6 +175,7 @@ let g:coc_global_extensions = [
   \ 'coc-pyright',
   \ 'coc-rls',
   \ 'coc-rust-analyzer',
+  \ 'coc-elixir',
 \ ]
 
 if (isdirectory('./node_modules') && isdirectory('./node_modules/prettier')) || (isdirectory('./web/node_modules') && isdirectory('./web/node_modules/prettier')) || (isdirectory('./extenson/node_modules') && isdirectory('./extensions/node_modules/prettier'))
