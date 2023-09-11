@@ -176,6 +176,7 @@ let g:coc_global_extensions = [
   \ 'coc-rls',
   \ 'coc-rust-analyzer',
   \ 'coc-elixir',
+  \ 'coc-solargraph',
 \ ]
 
 if (isdirectory('./node_modules') && isdirectory('./node_modules/prettier')) || (isdirectory('./web/node_modules') && isdirectory('./web/node_modules/prettier')) || (isdirectory('./extenson/node_modules') && isdirectory('./extensions/node_modules/prettier'))

@@ -3,6 +3,7 @@
     "javascript",
     "javascriptreact",
     "python",
+    "ruby",
     "typescript",
     "typescriptreact"
   ],
@@ -23,5 +24,8 @@
   "python.linting.flake8Enabled": true,
   "python.linting.enabled": true,
   "suggest.autoTrigger": "always",
+  "solargraph.diagnostics": true,
+  "solargraph.formatting": true,
+  "solargraph.useBundler": true,
   "tsserver.enableJavascript": false
 }
