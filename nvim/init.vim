@@ -11,10 +11,13 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'kassio/neoterm', {'commit': '5146f7e'}
+  Plug 'Konfekt/FastFold', {'commit': 'ab3d199d'}
   Plug 'github/copilot.vim', {'commit': '719dd8d0beab993dbad47a9e86ecb0dbd4a99da5'} " v1.10.2
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'scrooloose/nerdtree', {'tag': '5.0.0'}
   Plug 'sonph/onehalf', { 'rtp': 'vim' }
+  " python code folding
+  Plug 'tmhedberg/SimpylFold', {'commit': 'ff4c851'}
   Plug 'tomtom/tcomment_vim', {'tag': '3.08'}
   " " Automatically end certain structures (ruby blocks, etc)
   Plug 'tpope/vim-endwise', {'commit': '0067ced'}
@@ -200,6 +203,14 @@ aug python
   au!
   au BufWrite *.py call CocAction('format')
 aug END
+
+" Remap space bar to fold
+" https://stackoverflow.com/a/360634
+nnoremap <space> za
+vnoremap <space> zf
+
+" https://github.com/tmhedberg/SimpylFold
+g:SimpylFold_fold_import = '1'
 
 " This makes the time before it updates your hover faster
 " set updatetime=300
