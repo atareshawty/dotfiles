@@ -23,6 +23,8 @@
   "python.formatting.provider": "black",
   "python.linting.flake8Enabled": true,
   "python.linting.enabled": true,
+  "pyright.organizeimports.provider": "isort",
+  "python.sortImports.args": ["--settings-file", "/Users/alex/src/drivecapital/herbie/api/pyproject.toml"],
   "suggest.autoTrigger": "always",
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,

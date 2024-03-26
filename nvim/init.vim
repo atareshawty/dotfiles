@@ -134,7 +134,7 @@ let g:ale_fixers.javascriptreact = ['prettier', 'eslint']
 let g:ale_fixers.typescript = ['prettier', 'eslint']
 let g:ale_fixers.typescriptreact = ['prettier', 'eslint']
 let g:ale_fixers.terraform = ['terraform']
-let g:ale_fixers.python = ['black']
+let g:ale_fixers.python = ['black', 'isort']
 let g:ale_fixers.terraform = ['terraform']
 
 " reset sign column background colors
@@ -201,6 +201,7 @@ nmap <silent> gr <Plug>(coc-references)
 " https://github.com/fannheyward/coc-pyright/issues/229#issuecomment-754231643
 aug python
   au!
+  au BufWritePre *.py silent! call CocAction('runCommand', 'python.sortImports')
   au BufWrite *.py call CocAction('format')
 aug END
 
