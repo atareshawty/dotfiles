@@ -12,7 +12,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'junegunn/fzf.vim'
   Plug 'kassio/neoterm', {'commit': '5146f7e'}
   Plug 'Konfekt/FastFold', {'commit': 'ab3d199d'}
-  Plug 'github/copilot.vim', {'commit': '719dd8d0beab993dbad47a9e86ecb0dbd4a99da5'} " v1.10.2
+  Plug 'github/copilot.vim', {'commit': '69455be'} " v1.22.0
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'scrooloose/nerdtree', {'tag': '5.0.0'}
   Plug 'sonph/onehalf', { 'rtp': 'vim' }
