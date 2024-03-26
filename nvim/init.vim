@@ -210,7 +210,8 @@ nnoremap <space> za
 vnoremap <space> zf
 
 " https://github.com/tmhedberg/SimpylFold
-g:SimpylFold_fold_import = '1'
+let g:SimpylFold_fold_import = '1'
+
 
 " This makes the time before it updates your hover faster
 " set updatetime=300
