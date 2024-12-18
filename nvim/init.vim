@@ -74,6 +74,7 @@ let g:neoterm_size = '20'
 let g:test#custom_transformations = {'clear': function('ClearTerminalTransform')}
 let g:test#transformation = 'clear'
 let g:test#strategy = 'neoterm'
+let g:test#custom_runners = {'python': ['herbierunner'], 'javascript': ['herbierunner']}
 let g:neoterm_default_mod = 'rightbelow'
 
 let g:wordmotion_prefix = '<LocalLeader>'
@@ -132,6 +133,14 @@ let g:coc_global_extensions = [
   \ 'coc-rls',
   \ 'coc-rust-analyzer',
 \ ]
+
+if (isdirectory('./node_modules') && isdirectory('./node_modules/prettier')) || (isdirectory('./web/node_modules') && isdirectory('./web/node_modules/prettier')) || (isdirectory('./extenson/node_modules') && isdirectory('./extensions/node_modules/prettier'))
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if (isdirectory('./node_modules') && isdirectory('./node_modules/eslint')) || (isdirectory('./web/node_modules') && isdirectory('./web/node_modules/eslint')) || (isdirectory('./extenson/node_modules') && isdirectory('./extensions/node_modules/eslint'))
+  let g:coc_global_extensions += ['coc-eslint']
+endif
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
