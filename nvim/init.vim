@@ -89,10 +89,10 @@ syntax on
 set t_Co=256
 set cursorline
 let g:airline_theme='onehalfdark'
-colorscheme onedark
 let g:onedark_config = {
-    \ 'style': 'darker',
+    \ 'style': 'light',
 \}
+colorscheme onedark
 
 " ### NerdTree ###
 
