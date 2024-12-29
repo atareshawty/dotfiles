@@ -8,27 +8,28 @@
 mkdir -p ~/src/atareshawty
 cd ~/src/atareshawty
 git clone https://github.com/atareshawty/dotfiles.git
+cd dotfiles
 ./install.sh
 ```
 
-2. Install [Amphetamine App](https://apps.apple.com/us/app/amphetamine/id937984704?mt=12) from the App Store (it can't be installed via Brew).
+3. Install [Amphetamine App](https://apps.apple.com/us/app/amphetamine/id937984704?mt=12) from the App Store (it can't be installed via Brew).
 
 ### Periodically
 
-1. Update Brew packages
+- Update Brew packages
 
 ```bash
 brew update
 brew upgrade
 ```
 
-1. Update Brew Cask packages
+- Update Brew Cask packages
 
 ```bash
 brew upgrade --cask
 ```
 
-1. Recreate Brewfile
+- Recreate Brewfile
 
 ```bash
 ./script/recreate_brewfile.sh
