@@ -1,13 +1,44 @@
+### Installation
+
+1. Setup git authentication
+
+2.
+
 ```bash
 mkdir -p ~/src/atareshawty
-cd ~src/atareshawty
+cd ~/src/atareshawty
 git clone https://github.com/atareshawty/dotfiles.git
-./script/install.sh
+cd dotfiles
+./install.sh
 ```
 
-### Manual Steps
+3. Install [Amphetamine App](https://apps.apple.com/us/app/amphetamine/id937984704?mt=12) from the App Store (it can't be installed via Brew).
 
-#### Iterm2
+4. Install latest version of nodejs
 
-- Iterm2 > CMD-i > Colors -> Color Presets -> Import
-- Select ~/Downloads/editor-themes/one-half-light.itermcolors
+5. Open `nvim` - coc will auto install
+
+### Periodically
+
+- Update Brew packages
+
+```bash
+brew update
+brew upgrade
+```
+
+- Update Brew Cask packages
+
+```bash
+brew upgrade --cask
+```
+
+- Recreate Brewfile
+
+```bash
+./script/recreate_brewfile.sh
+```
+
+### TODO
+
+- [ ] `useful-snippets` directory

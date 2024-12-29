@@ -1,6 +1,8 @@
 [user]
   name = Alex Tareshawty
   email = alex@tareshawty.com
+[credential]
+  helper = osxkeychain
 [alias]
   aa = add -A
   amend = commit --amend --no-edit
@@ -11,11 +13,12 @@
   cp = cherry-pick
   d = diff
   ds = diff --staged
+  get = !"f() { git fetch && git checkout -b $1 origin/$1; }; f"
   grepc = grep --ignore-case
   head = !git log -n 1 | sed -n 1p | sed -e 's/commit //' | tr -d '\n' | pbcopy
   hist = log --graph
   logfp = log --first-parent
   st = status
-  wip = !git add -A && git commit -m "wip"
+  wip = !git add -A && git commit -m "wip" --no-verify
 [pull]
 	rebase = false
