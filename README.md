@@ -2,7 +2,9 @@
 
 1. Setup git authentication
 
-2. ```bash
+2.
+
+```bash
 mkdir -p ~/src/atareshawty
 cd ~/src/atareshawty
 git clone https://github.com/atareshawty/dotfiles.git
@@ -34,5 +36,4 @@ brew upgrade --cask
 
 ### TODO
 
-- [ ] Occasionally check in on python code folding to see if Treesitter can do imports
 - [ ] `useful-snippets` directory
