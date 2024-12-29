@@ -11,6 +11,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'kassio/neoterm'
   " ColorScheme
   Plug 'navarasu/onedark.nvim'
+  Plug 'nathangrigg/vim-beancount'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'scrooloose/nerdtree'
