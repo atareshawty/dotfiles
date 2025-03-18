@@ -9,7 +9,15 @@
   ],
   "eslint.autoFixOnSave": true,
   "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
-  "eslint.workingDirectories": ["web", "extension"],
+  "eslint.workingDirectories": [
+    "extension",
+    "packages/design-system",
+    "packages/eslint-config",
+    "packages/listify",
+    "packages/text-editor",
+    "web"
+  ],
+  "eslint.experimental.useFlatConfig": true,
   "languageserver": {
     "terraform": {
       "command": "terraform-ls",
