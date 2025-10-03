@@ -34,6 +34,7 @@ function! test#python#herbierunner#build_args(args) abort
 endfunction
 
 function! test#python#herbierunner#executable() abort
+  echo "herbierunner"
   return "cd $HOME/src/drivecapital/herbie && ./script/test.sh"
 endfunction
 

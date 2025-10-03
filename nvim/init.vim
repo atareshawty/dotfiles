@@ -1,10 +1,12 @@
 call plug#begin('~/.config/nvim/plugged')
   Plug 'chaoren/vim-wordmotion'
+  Plug 'CopilotC-Nvim/CopilotChat.nvim'
   Plug 'farmergreg/vim-lastplace'
   Plug 'github/copilot.vim'
   Plug 'hashivim/vim-terraform'
   Plug 'janko-m/vim-test'
   Plug 'jlanzarotta/bufexplorer'
+  Plug 'nvim-lua/plenary.nvim'
   Plug 'jtratner/vim-flavored-markdown'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
@@ -61,6 +63,7 @@ function! SourceIfExists(file)
 endfunction
 
 nmap <silent> <C-P> :Files<CR>
+nmap <silent> <C-P>i :CopilotChatOpen<CR>
 nmap <silent> <LocalLeader>t :Ttoggle<CR>
 nmap <silent> <LocalLeader>nt :NERDTreeToggle<CR>
 nmap <silent> <LocalLeader>rb :wa <bar> :TestFile<CR>
@@ -74,6 +77,7 @@ let g:neoterm_size = '20'
 let g:test#custom_transformations = {'clear': function('ClearTerminalTransform')}
 let g:test#transformation = 'clear'
 let g:test#strategy = 'neoterm'
+let g:test#enabled_runners = ['python#herbierunner', 'javascript#herbierunner']
 let g:test#custom_runners = {'python': ['herbierunner'], 'javascript': ['herbierunner']}
 let g:neoterm_default_mod = 'rightbelow'
 
@@ -171,7 +175,13 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+require"CopilotChat".setup {
+  -- See Configuration section for options
+}
 EOF
+
+set completeopt=popup,noselect
 
 " Custom foldtext to show first line and number of lines in fold
 " https://github.com/nvim-treesitter/nvim-treesitter/issues/5643#issuecomment-2396525214
@@ -184,7 +194,11 @@ endfunction
 
 filetype plugin indent on
 set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
+" https://claude.ai/chat/27e9996a-08ba-4d82-9881-8ea32fe674f8
+" set foldexpr=nvim_treesitter#foldexpr()
+set foldexpr=v:lua.vim.treesitter.foldexpr()
+set foldlevel=99
+set foldlevelstart=99
 " set foldtext=nvim_treesitter#foldtext()
 set foldtext=MyFoldText()
 autocmd BufReadPost,FileReadPost * normal zR
