@@ -20,7 +20,7 @@ echo "Checking default shell"
 if [[ "$SHELL" != "/opt/homebrew/bin/bash" ]]; then
 	echo "Installing bash as default shell..."
 	brew list bash || brew install bash
-	sudo chsh -s /usr/local/bin/bash "$USER"
+	sudo chsh -s /opt/homebrew/bin/bash "$USER"
 else
 	echo "Default shell already brew bash, skipping"
 fi

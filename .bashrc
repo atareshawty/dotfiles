@@ -14,9 +14,6 @@ alias vim="nvim"
 
 export PATH="$PATH:$HOME/.local/bin"
 
-# Include commands like psql and pg_dump in path: https://stackoverflow.com/a/49689589
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-
 # Things I want to keep private
 if [ -f ~/.bashrc_private ]; then
   source ~/.bashrc_private
