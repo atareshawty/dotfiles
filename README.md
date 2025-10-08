@@ -7,7 +7,7 @@
 ```bash
 mkdir -p ~/src/atareshawty
 cd ~/src/atareshawty
-git clone https://github.com/atareshawty/dotfiles.git
+git clone git@github.com:atareshawty/dotfiles.git
 cd dotfiles
 ./install.sh
 ```
