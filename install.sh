@@ -1,28 +1,13 @@
-defaults write "com.apple.dock" "persistent-apps" -array
-defaults write "com.apple.dock" autohide -bool true
-defaults write "com.apple.dock" autohide-delay -float 1000
-defaults write "com.apple.dock" no-bouncing -bool TRUE; killall Dock
-
-# Install homebrew, if not installed
-echo "Checking for homebrew"
-if ! test -d /opt/homebrew; then
-	echo "Homebrew not installed, installing..."
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# Install latest version of neovim for Ubuntu 20.04:
+# - Step one: check latest version of neovim
+if ! command -v nvim >/dev/null 2>&1 || [[ "$(nvim --version | head -n1 | awk '{print $2}')" != "v0.10.3" ]]; then
+    echo "Incorrect neovim version installed. Fixing that..."
+    curl -LO https://github.com/neovim/neovim/releases/download/v0.10.3/nvim.appimage
+    chmod +x nvim.appimage
+    sudo mv nvim.appimage /bin/nvim
+    echo "nvim version=$(nvim --version | head -n1 | awk '{print $2}')"
 else
-	echo "Homebrew already installed, skipping"
-fi
-
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-brew bundle install
-
-echo "Checking default shell"
-if [[ "$SHELL" != "/opt/homebrew/bin/bash" ]]; then
-	echo "Installing bash as default shell..."
-	brew list bash || brew install bash
-	sudo chsh -s /opt/homebrew/bin/bash "$USER"
-else
-	echo "Default shell already brew bash, skipping"
+    echo "Neovim version 0.10.3 is installed"
 fi
 
 echo "Creating symlinks for config files..."
