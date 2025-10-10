@@ -32,7 +32,21 @@ set showmatch
 set smartcase
 set textwidth=0 nosmartindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 set undofile
-set clipboard=unnamed
+set clipboard=unnamedplus
+
+lua << EOF
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+  },
+}
+EOF
 
 " Load .profile (-l) and .bashrc (-i)
 set shell=bash\ -l
