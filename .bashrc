@@ -128,6 +128,7 @@ alias la="ls -al"
 alias ls="ls -GFh"
 alias myip="curl -4 icanhazip.com"
 alias spec="bundle exec rspec"
+alias venv="source .venv/bin/activate"
 alias vim="nvim"
 
 # Things I want to keep private
@@ -138,3 +139,6 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+. "$HOME/.local/bin/env"
+eval "$(direnv hook bash)"
