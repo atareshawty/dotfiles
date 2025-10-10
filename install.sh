@@ -19,8 +19,7 @@ if ! command -v tmux >/dev/null 2>&1; then
     tar -xzf "$TMPDIR/tmux-3.5.tar.gz" -C "$TMPDIR" && cd "$TMPDIR/tmux-3.5" && ./configure && make && sudo make install && tmux -V && rm -rf "$TMPDIR"
 fi
 
-sudo apt update && sudo apt install xclip -y
-
+./script/nodejs.sh
 
 echo "Creating symlinks for config files..."
 mkdir -p ~/.config
