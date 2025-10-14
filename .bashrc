@@ -142,3 +142,12 @@ export NVM_DIR="$HOME/.nvm"
 
 . "$HOME/.local/bin/env"
 eval "$(direnv hook bash)"
+
+export rosdistro=noetic
+export ubunturelease=focal
+
+if [ -f /opt/ros/noetic/setup.bash ]; then
+  . /opt/ros/noetic/setup.bash
+fi
+
+source ~/.camlrc
