@@ -2,6 +2,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'chaoren/vim-wordmotion'
   Plug 'farmergreg/vim-lastplace'
   Plug 'github/copilot.vim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'CopilotC-Nvim/CoPilotChat.nvim'
   Plug 'hashivim/vim-terraform'
   Plug 'janko-m/vim-test'
   Plug 'jlanzarotta/bufexplorer'
@@ -16,6 +18,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'scrooloose/nerdtree'
   Plug 'sonph/onehalf', { 'rtp': 'vim' }
+  Plug 'tadachs/ros-nvim'
   Plug 'tomtom/tcomment_vim'
   " Automatically end certain structures (ruby blocks, etc)
   Plug 'tpope/vim-endwise'
@@ -115,7 +118,7 @@ colorscheme onedark
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " faster fzf fuzzy find respecting gitignore
-let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!target/*" --glob "!node_modules/" --glob "!tmp/" --glob "!__pycache__" --glob "!.venv/*"'
+let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!target/*" --glob "!node_modules/" --glob "!tmp/" --glob "!__pycache__" --glob "!.venv/*" --glob "!**/.venv/**" --glob "!devel/**" --glob "!.cache/**" --glob "!build/**" --glob "!logs/**"'
 
 " ###### COC ######
 " use <tab> for trigger completion and navigate to the next complete item
@@ -142,10 +145,9 @@ endfunction
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#install-extensions
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
-  \ 'coc-flow',
   \ 'coc-pyright',
-  \ 'coc-rls',
-  \ 'coc-rust-analyzer',
+  \ '@yaegassy/coc-ruff',
+  \ 'coc-clangd',
 \ ]
 
 " Remap keys for gotos
@@ -158,8 +160,8 @@ nmap <silent> gr <Plug>(coc-references)
 " https://github.com/fannheyward/coc-pyright/issues/229#issuecomment-754231643
 aug python
   au!
-  au BufWrite *.py call CocAction('format')
-  au BufWritePre *.py silent! :call CocAction('runCommand', 'python.sortImports')
+  au BufWrite *.py call CocAction('runCommand', 'ruff.executeAutofix')
+"  au BufWritePre *.py silent! :call CocAction('runCommand', 'python.sortImports')
 aug END
 
 " This makes the time before it updates your hover faster
@@ -208,3 +210,7 @@ function! OnSpace()
 endfunction
 
 nnoremap <silent> <Space> @=(OnSpace())<CR>
+
+"lua << EOF
+"require("CopilotChat").setup()
+"EOF

@@ -123,7 +123,7 @@ export EDITOR="$VISUAL"
 
 # Aliases
 alias be="bundle exec"
-alias flush-branches="git branch --merged main | grep -v 'main' | xargs git branch -d && git remote prune origin"
+alias flush-branches="git branch --merged develop | grep -v 'develop' | xargs git branch -d && git remote prune origin"
 alias la="ls -al"
 alias ls="ls -GFh"
 alias myip="curl -4 icanhazip.com"
@@ -150,4 +150,18 @@ if [ -f /opt/ros/noetic/setup.bash ]; then
   . /opt/ros/noetic/setup.bash
 fi
 
+if [ -f ~/.bash-git-prompt/gitprompt.sh ]; then
+    GIT_PROMPT_ONLY_IN_REPO=1
+    source ~/.bash-git-prompt/gitprompt.sh
+fi
+
 source ~/.camlrc
+
+
+# "CATKIN_BUILD_DIR": "${workspaceFolder}/build",
+# "CATKIN_DEVEL_DIR": "${workspaceFolder}/devel",
+# "ROSCONSOLE_CONFIG_FILE": "${workspaceFolder}/rosconsole.config"
+# jq -s 'map(.[])' ${CATKIN_BUILD_DIR}/**/compile_commands.json > ${workspaceFolder}/compile_commands.json
+# https://pathrobotics.atlassian.net/wiki/spaces/DEV/pages/56295774/Setting+up+CLion+for+Forge+project#Installation
+alias compile-commands="jq -s 'map(.[])' $(pwd)/build/**/compile_commands.json > $(pwd)/compile_commands.json"
+alias forge-build="cd ~/projects/forge && catkin build && compile-commands && cd -"

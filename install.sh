@@ -19,6 +19,13 @@ if ! command -v tmux >/dev/null 2>&1; then
     tar -xzf "$TMPDIR/tmux-3.5.tar.gz" -C "$TMPDIR" && cd "$TMPDIR/tmux-3.5" && ./configure && make && sudo make install && tmux -V && rm -rf "$TMPDIR"
 fi
 
+# bash-git-prompt
+if [ ! -d ~/.bash-git-prompt ]; then
+    echo "Installing bash-git-prompt"
+    git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
+    cd ~/.bash-git-prompt && git fetch --tags && git checkout v2.7.1 && cd -
+fi
+
 ./script/nodejs.sh
 
 echo "Creating symlinks for config files..."

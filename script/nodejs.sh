@@ -13,3 +13,5 @@ nvm install $NODE_VERSION
 
 # Always default to the latest available node version on a shell
 nvm alias default node
+
+npm install -g @github/copilot

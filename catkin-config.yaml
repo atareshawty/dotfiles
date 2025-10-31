@@ -1,0 +1,28 @@
+# Save a working/valid catkin configuration file for forge
+# Just in case I need to wipe everything out and start from scratch
+authors: []
+blacklist: []
+build_space: build
+catkin_make_args: []
+cmake_args:
+- -DBUILD_MANUAL_TESTS=1
+- -DCATKIN_ENABLE_TESTING=1
+- -DCMAKE_MODULE_PATH=/home/atareshawty/projects/forge/cmake;/home/atareshawty/projects/forge/src/forge_calibration/cmake
+- -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+devel_layout: linked
+devel_space: devel
+extend_path: /opt/ros/noetic
+extends: null
+install: false
+install_space: install
+isolate_install: false
+jobs_args: []
+licenses:
+- TODO
+log_space: logs
+maintainers: []
+make_args: []
+source_space: src
+use_env_cache: true
+use_internal_make_jobserver: true
+whitelist: []

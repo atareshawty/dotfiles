@@ -9,7 +9,7 @@
   br = branch
   co = checkout
   cob = checkout -b
-  com = checkout main
+  com = checkout develop
   cp = cherry-pick
   d = diff
   ds = diff --staged

@@ -52,3 +52,5 @@ fi
 if command -v fzf 2>&1 >/dev/null; then
 	eval "$(fzf --bash)"
 fi
+
+source ~/.forge-aliases.bash

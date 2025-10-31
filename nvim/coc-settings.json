@@ -1,5 +1,16 @@
 {
+  "clangd.path": "/usr/bin/clangd-18",
+  "clangd.arguments": [
+    "--background-index",
+    "--header-insertion=iwyu",
+    "--completion-style=detailed",
+    "--pch-storage=memory",
+  ],
+  "clangd.inlayHints.enable": false,
+  "signature.enable": false,
   "coc.preferences.formatOnSaveFiletypes": [
+    "cpp",
+    "hpp",
     "javascript",
     "javascriptreact",
     "python",
@@ -7,17 +18,24 @@
     "typescript",
     "typescriptreact"
   ],
+  "diagnostic.enable": true,
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.virtualText": true,
+  "diagnostic.signOffset": 1000,
   "python.formatting.provider": "ruff",
   "python.analysis.extraPaths": [
       "/opt/ros/noetic/lib/python3/dist-packages"
   ],
-  "pyright.organizeimports.provider": "isort",
   "pyright.inlayHints.functionReturnTypes": false,
-  "pyright.inlayHints.variableTypes": false,
   "pyright.inlayHints.parameterTypes": false,
-  "suggest.autoTrigger": "always",
+  "pyright.inlayHints.variableTypes": false,
+  "ruff.enable": true,
+  "ruff.fixOnSave": true,
+  "ruff.lintOnSave": true,
+  "ruff.organizeImports": true,
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
   "solargraph.useBundler": true,
+  "suggest.autoTrigger": "always",
   "tsserver.enableJavascript": false
 }
