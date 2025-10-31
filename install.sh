@@ -23,7 +23,7 @@ fi
 if [ ! -d ~/.bash-git-prompt ]; then
     echo "Installing bash-git-prompt"
     git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
-    cd ~/.bash-git-prompt && git fetch --tags && git checkout v2.7.1 && cd -
+    cd ~/.bash-git-prompt && git fetch --tags && git checkout 2.7.1 && cd -
 fi
 
 ./script/nodejs.sh
