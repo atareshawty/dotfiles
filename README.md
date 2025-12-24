@@ -14,9 +14,7 @@ cd dotfiles
 
 3. Install [Amphetamine App](https://apps.apple.com/us/app/amphetamine/id937984704?mt=12) from the App Store (it can't be installed via Brew).
 
-4. Install latest version of nodejs
-
-5. Open `nvim` - coc will auto install
+4. Open `nvim` - coc will auto install
 
 ### Periodically
 

@@ -27,6 +27,10 @@ mkdir -p ~/.config
 ./script/symlinks.sh
 echo "Done creating symlinks"
 
+echo "Installing programming languages..."
+./script/languages/javascript.sh
+echo "Done installing programming languages"
+
 nvim +"PlugInstall --sync" +qa
 
 source ~/.bash_profile
