@@ -15,6 +15,12 @@ fi
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
+export FZF_DEFAULT_COMMAND="rg"
+export RIPGREP_CONFIG_PATH="${HOME}/.ripgreprc"
+if command -v fzf 2>&1> /dev/null; then
+  eval "$(fzf --bash)"
+fi
+
 # Aliases
 alias be="bundle exec"
 alias flush-branches="git branch --merged main | grep -v 'main' | xargs git branch -d && git remote prune origin"

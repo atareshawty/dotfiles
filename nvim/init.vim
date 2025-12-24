@@ -101,7 +101,7 @@ colorscheme onedark
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " faster fzf fuzzy find respecting gitignore
-let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!target/*" --glob "!node_modules/" --glob "!tmp/" --glob "!__pycache__"'
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow'
 
 " ###### COC ######
 " use <tab> for trigger completion and navigate to the next complete item
