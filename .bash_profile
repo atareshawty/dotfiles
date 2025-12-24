@@ -6,6 +6,7 @@ if command -v fnm 2>&1 >/dev/null; then
 	eval "$(fnm env)"
 fi
 
+# Atleast uv puts executables here
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/src/useful-snippets"
 

@@ -29,6 +29,7 @@ echo "Done creating symlinks"
 
 echo "Installing programming languages..."
 ./script/languages/javascript.sh
+./script/languages/python.sh
 echo "Done installing programming languages"
 
 nvim +"PlugInstall --sync" +qa
