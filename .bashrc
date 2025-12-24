@@ -1,3 +1,16 @@
+# Interactive shells only
+[[ $- != *i* ]] && return
+
+# all 3rd party bash completion scripts
+# Example: git
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+
+# Setup https://github.com/magicmonty/bash-git-prompt
+if [ -f "/opt/homebrew/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+	__GIT_PROMPT_DIR="/opt/homebrew/opt/bash-git-prompt/share"
+	source "/opt/homebrew/opt/bash-git-prompt/share/gitprompt.sh"
+fi
+
 # Set Default Editor to neovim
 export VISUAL=nvim
 export EDITOR="$VISUAL"
@@ -11,11 +24,6 @@ alias myip="curl -4 icanhazip.com"
 alias spec="bundle exec rspec"
 alias tf='terraform'
 alias vim="nvim"
-
-export PATH="$PATH:$HOME/.local/bin"
-
-# Include commands like psql and pg_dump in path: https://stackoverflow.com/a/49689589
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 # Things I want to keep private
 if [ -f ~/.bashrc_private ]; then
