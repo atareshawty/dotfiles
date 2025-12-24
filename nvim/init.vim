@@ -48,8 +48,33 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd BufRead,InsertLeave * match ExtraWhitespace /\s\+$/
 highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-autocmd FileType javascript autocmd BufWritePre <buffer> :%s/\s\+$//e
-autocmd FileType ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+lua <<EOF
+vim.api.nvim_create_augroup("TrimTrailingWhitespace", { clear = true })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = "TrimTrailingWhitespace",
+  pattern = "*",
+  callback = function()
+    filetypes_to_skip = {
+      "markdown",
+      "gitcommit",
+      "",
+    }
+    if vim.tbl_contains(filetypes_to_skip, vim.bo.filetype) then
+      return
+    end
+    -- Save cursor position
+    local pos = vim.api.nvim_win_get_cursor(0)
+
+    -- Remove trailing whitespace
+    vim.cmd([[%s/\s\+$//e]])
+
+    -- Restore cursor position
+    vim.api.nvim_win_set_cursor(0, pos)
+  end,
+})
+EOF
 
 function! ClearTerminalTransform(cmd) abort
   return 'clear;'.a:cmd
