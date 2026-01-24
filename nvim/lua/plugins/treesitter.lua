@@ -1,7 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 
 -- https://github.com/nvim-treesitter/nvim-treesitter/wiki/Installation#vim-plug
-require("nvim-treesitter.configs").setup {
+require'nvim-treesitter'.setup {
   auto_install = true,
   highlight = {
     enable = true,
