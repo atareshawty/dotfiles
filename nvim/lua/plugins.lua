@@ -1,0 +1,26 @@
+local fn = vim.fn
+
+fn['plug#begin']('~/.config/nvim/plugged')
+
+fn['plug#']('chaoren/vim-wordmotion')
+fn['plug#']('farmergreg/vim-lastplace')
+fn['plug#']('github/copilot.vim')
+fn['plug#']('hashivim/vim-terraform')
+fn['plug#']('janko-m/vim-test')
+fn['plug#']('jlanzarotta/bufexplorer')
+fn['plug#']('jtratner/vim-flavored-markdown')
+fn['plug#']('junegunn/fzf', { ['do'] = fn['fzf#install'] })
+fn['plug#']('junegunn/fzf.vim')
+fn['plug#']('kassio/neoterm')
+fn['plug#']('nathangrigg/vim-beancount')
+fn['plug#']('navarasu/onedark.nvim')
+fn['plug#']('neoclide/coc.nvim', { branch = 'release' })
+fn['plug#']('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
+fn['plug#']('scrooloose/nerdtree')
+fn['plug#']('sonph/onehalf', { rtp = 'vim' })
+fn['plug#']('tomtom/tcomment_vim')
+-- Automatically end certain structures (ruby blocks, etc)
+fn['plug#']('tpope/vim-endwise')
+fn['plug#']('vim-airline/vim-airline')
+
+fn['plug#end']()
