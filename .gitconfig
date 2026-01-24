@@ -12,6 +12,7 @@
   com = checkout main
   cp = cherry-pick
   d = diff
+  defaultBranch = main
   ds = diff --staged
   get = !"f() { git fetch && git checkout -b $1 origin/$1; }; f"
   grepc = grep --ignore-case
