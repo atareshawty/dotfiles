@@ -22,3 +22,5 @@
   wip = !git add -A && git commit -m "wip" --no-verify
 [pull]
 	rebase = false
+[init]
+	defaultBranch = develop

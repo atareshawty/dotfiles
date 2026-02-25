@@ -15,6 +15,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'navarasu/onedark.nvim'
   Plug 'nathangrigg/vim-beancount'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'neovim/nvim-lspconfig', {'tag': 'v2.5.0'}
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'scrooloose/nerdtree'
   Plug 'sonph/onehalf', { 'rtp': 'vim' }
@@ -93,6 +94,8 @@ let g:test#custom_transformations = {'clear': function('ClearTerminalTransform')
 let g:test#transformation = 'clear'
 let g:test#strategy = 'neoterm'
 let g:neoterm_default_mod = 'rightbelow'
+let g:test#python#pytest#executable = 'source .venv/bin/activate && pytest'
+let g:test#python#pytest#options = '--no-cov -p no:warnings'
 
 let g:wordmotion_prefix = '<LocalLeader>'
 let g:wordmotion_mappings = {
@@ -118,7 +121,7 @@ colorscheme onedark
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " faster fzf fuzzy find respecting gitignore
-let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!target/*" --glob "!node_modules/" --glob "!tmp/" --glob "!__pycache__" --glob "!.venv/*" --glob "!**/.venv/**" --glob "!devel/**" --glob "!.cache/**" --glob "!build/**" --glob "!logs/**"'
+let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!target/*" --glob "!node_modules/" --glob "!tmp/" --glob "!__pycache__" --glob "!.venv/*" --glob "!**/.venv/**" --glob "!devel/**" --glob "!.cache/**" --glob "!build/**" --glob "!logs/**" --glob "!docs/_build/**" --glob "!docs/packages/**" --glob "!devel/"'
 
 " ###### COC ######
 " use <tab> for trigger completion and navigate to the next complete item
@@ -133,36 +136,48 @@ inoremap <silent><expr> <Tab>
       \ coc#refresh()
 
 " Hover and Shift-K to show documentation of current hover target
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim', 'help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
+" function! s:show_documentation()
+"   if (index(['vim', 'help'], &filetype) >= 0)
+"     execute 'h '.expand('<cword>')
+"   else
+"     call CocAction('doHover')
+"   endif
+" endfunction
+
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#install-extensions
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
-  \ 'coc-pyright',
-  \ '@yaegassy/coc-ruff',
   \ 'coc-clangd',
 \ ]
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+" nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+" nnoremap <silent> gy <cmd>lua vim.lsp.buf.type_definition()<CR>
+" nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+" nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 
 " Manually autoformat on save for pyton files
 " https://github.com/fannheyward/coc-pyright/issues/229#issuecomment-754231643
-aug python
-  au!
-  au BufWrite *.py call CocAction('runCommand', 'ruff.executeAutofix')
-"  au BufWritePre *.py silent! :call CocAction('runCommand', 'python.sortImports')
-aug END
+" aug python
+"   au!
+"   au BufWrite *.py call CocAction('runCommand', 'ruff.executeAutofix')
+" "  au BufWritePre *.py silent! :call CocAction('runCommand', 'python.sortImports')
+" aug END
+
+augroup python
+  autocmd!
+  autocmd BufWritePre *.py lua vim.lsp.buf.code_action({
+        \ context = { only = { "source.fixAll.ruff" } },
+        \ apply = true,
+        \ })
+augroup END
 
 " This makes the time before it updates your hover faster
 " set updatetime=300
@@ -214,3 +229,6 @@ nnoremap <silent> <Space> @=(OnSpace())<CR>
 "lua << EOF
 "require("CopilotChat").setup()
 "EOF
+
+lua require('lsp.ty')
+lua require('lsp.ruff')

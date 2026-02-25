@@ -10,4 +10,6 @@ if ! command -v uv >/dev/null 2>&1; then
 fi
 
 # Install globally expected python tooling
-pip install commitizen pre-commit
+uv tool install commitizen
+uv tool install ruff
+uv tool install ty

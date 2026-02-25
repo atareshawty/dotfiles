@@ -11,12 +11,8 @@
   "coc.preferences.formatOnSaveFiletypes": [
     "cpp",
     "hpp",
-    "javascript",
-    "javascriptreact",
     "python",
     "ruby",
-    "typescript",
-    "typescriptreact"
   ],
   "diagnostic.enable": true,
   "diagnostic.checkCurrentLine": true,

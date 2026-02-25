@@ -123,7 +123,7 @@ export EDITOR="$VISUAL"
 
 # Aliases
 alias be="bundle exec"
-alias flush-branches="git branch --merged develop | grep -v 'develop' | xargs git branch -d && git remote prune origin"
+alias flush-branches="git branch --merged develop | grep -v '\ develop$' | xargs --no-run-if-empty git branch -d && git remote prune origin"
 alias la="ls -al"
 alias ls="ls -GFh"
 alias myip="curl -4 icanhazip.com"
@@ -165,3 +165,5 @@ source ~/.camlrc
 # https://pathrobotics.atlassian.net/wiki/spaces/DEV/pages/56295774/Setting+up+CLion+for+Forge+project#Installation
 alias compile-commands="jq -s 'map(.[])' $(pwd)/build/**/compile_commands.json > $(pwd)/compile_commands.json"
 alias forge-build="cd ~/projects/forge && catkin build && compile-commands && cd -"
+alias clean-pycache="find . -type d -name '__pycache__' -exec rm -rf {} +"
+alias repl="./scripts/dev/repl.sh"
