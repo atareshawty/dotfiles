@@ -3,8 +3,12 @@
 -- NOTE: You need to have the language server installed on your system for it to work.
 local map = vim.keymap.set
 
+-- Python
 vim.lsp.enable('ruff')
 vim.lsp.enable('ty')
+
+-- Terraform (Hashicorp Official LS, not the community one)
+vim.lsp.enable('terraformls')
 
 -- Show diagnostics in a floating window on cursor hold
 vim.api.nvim_create_augroup("lsp_diagnostics_auto", { clear = true })
@@ -52,6 +56,22 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         vim.lsp.buf.code_action({
             context = {
                 only = { "source.fixAll.ruff" },
+            },
+            apply = true,
+        })
+        -- Run the standard LSP formatting request (Ruff LSP provides this capability)
+        vim.lsp.buf.format({ async = false })
+    end,
+})
+
+-- Autoformat Terraform files on save using Terraform LSP
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*.tf",
+    callback = function()
+        -- Apply all auto-fixable diagnostics
+        vim.lsp.buf.code_action({
+            context = {
+                only = { "source.fixAll.terraformls" },
             },
             apply = true,
         })
