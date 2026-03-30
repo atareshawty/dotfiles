@@ -167,3 +167,5 @@ alias compile-commands="jq -s 'map(.[])' $(pwd)/build/**/compile_commands.json >
 alias forge-build="cd ~/projects/forge && catkin build && compile-commands && cd -"
 alias clean-pycache="find . -type d -name '__pycache__' -exec rm -rf {} +"
 alias repl="./scripts/dev/repl.sh"
+alias code-repo-auth="source ~/projects/obsidian/scripts/dev/code-repo-auth.sh"
+. "$HOME/.cargo/env"

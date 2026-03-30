@@ -54,3 +54,4 @@ if command -v fzf 2>&1 >/dev/null; then
 fi
 
 source ~/.forge-aliases.bash
+. "$HOME/.cargo/env"
