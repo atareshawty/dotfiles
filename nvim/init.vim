@@ -18,6 +18,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'neovim/nvim-lspconfig', {'tag': 'v2.5.0'}
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'scrooloose/nerdtree'
+  Plug 'stevearc/aerial.nvim', {'branch': 'nvim-0.9'}
   Plug 'sonph/onehalf', { 'rtp': 'vim' }
   Plug 'tadachs/ros-nvim'
   Plug 'tomtom/tcomment_vim'
@@ -26,6 +27,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'vim-airline/vim-airline'
 call plug#end()
 
+set autoread
 set dir=/tmp//
 set hidden
 set ignorecase
@@ -54,6 +56,8 @@ EOF
 
 " Load .profile (-l) and .bashrc (-i)
 set shell=bash\ -l
+
+autocmd FocusGained,BufEnter * checktime
 
 autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 autocmd BufNewFile,BufRead *.txt setlocal spell spelllang=en_us
@@ -238,3 +242,4 @@ nnoremap <silent> <Space> @=(OnSpace())<CR>
 
 lua require('lsp.ty')
 lua require('lsp.ruff')
+lua require('aerial_config')

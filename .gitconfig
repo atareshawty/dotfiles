@@ -17,6 +17,7 @@
   grepc = grep --ignore-case
   head = !git log -n 1 | sed -n 1p | sed -e 's/commit //' | tr -d '\n' | pbcopy
   hist = log --graph
+  ol = log --oneline
   logfp = log --first-parent
   st = status
   wip = !git add -A && git commit -m "wip" --no-verify
