@@ -160,7 +160,6 @@ nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#install-extensions
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
-  \ 'coc-clangd',
 \ ]
 
 " Remap keys for gotos
@@ -187,6 +186,11 @@ augroup python
         \ context = { only = { "source.fixAll.ruff" } },
         \ apply = true,
         \ })
+augroup END
+
+augroup cpp
+  autocmd!
+  autocmd BufWritePre *.cpp,*.cc,*.cxx,*.c,*.h,*.hpp,*.hxx lua vim.lsp.buf.format({ async = false })
 augroup END
 
 " This makes the time before it updates your hover faster
@@ -242,4 +246,5 @@ nnoremap <silent> <Space> @=(OnSpace())<CR>
 
 lua require('lsp.ty')
 lua require('lsp.ruff')
+lua require('lsp.clangd')
 lua require('aerial_config')

@@ -158,13 +158,28 @@ fi
 source ~/.camlrc
 
 
-# "CATKIN_BUILD_DIR": "${workspaceFolder}/build",
-# "CATKIN_DEVEL_DIR": "${workspaceFolder}/devel",
-# "ROSCONSOLE_CONFIG_FILE": "${workspaceFolder}/rosconsole.config"
-# jq -s 'map(.[])' ${CATKIN_BUILD_DIR}/**/compile_commands.json > ${workspaceFolder}/compile_commands.json
+# Merge per-package compile_commands.json files into one at the workspace root.
+# Requires the workspace to have been built with -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+# (set via `catkin config --append-args --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON`).
 # https://pathrobotics.atlassian.net/wiki/spaces/DEV/pages/56295774/Setting+up+CLion+for+Forge+project#Installation
-alias compile-commands="jq -s 'map(.[])' $(pwd)/build/**/compile_commands.json > $(pwd)/compile_commands.json"
-alias forge-build="cd ~/projects/forge && catkin build && compile-commands && cd -"
+compile-commands() {
+  local ws="${1:-$PWD}"
+  if [ ! -d "$ws/build" ]; then
+    echo "compile-commands: no build dir at $ws/build" >&2
+    return 1
+  fi
+  local files
+  mapfile -d '' files < <(find "$ws/build" -maxdepth 2 -name compile_commands.json -print0 2>/dev/null)
+  if [ "${#files[@]}" -eq 0 ]; then
+    echo "compile-commands: no per-package compile_commands.json under $ws/build" >&2
+    echo "  enable export and rebuild:" >&2
+    echo "    (cd $ws && catkin config --append-args --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && catkin build --force-cmake)" >&2
+    return 1
+  fi
+  jq -s 'map(.[])' "${files[@]}" > "$ws/compile_commands.json"
+  echo "compile-commands: wrote $ws/compile_commands.json ($(jq length "$ws/compile_commands.json") entries, ${#files[@]} packages)"
+}
+alias forge-build="(cd ~/projects/forge && catkin build && compile-commands)"
 alias clean-pycache="find . -type d -name '__pycache__' -exec rm -rf {} +"
 alias repl="./scripts/dev/repl.sh"
 alias code-repo-auth="source ~/projects/obsidian/scripts/dev/code-repo-auth.sh"
