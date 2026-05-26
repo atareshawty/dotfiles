@@ -25,3 +25,5 @@
 	rebase = false
 [init]
 	defaultBranch = develop
+[rebase]
+	updateRefs = true
