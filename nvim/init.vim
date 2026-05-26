@@ -75,12 +75,15 @@ autocmd FileType javascript autocmd BufWritePre <buffer> :%s/\s\+$//e
 autocmd FileType ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 function! ClearTerminalTransform(cmd) abort
-  let l:match = matchlist(a:cmd, '\vapplications/([^/]+)/')
-  if !empty(l:match) && a:cmd =~# 'pytest'
-    let l:app_dir = 'applications/' . l:match[1]
-    let l:new_cmd = substitute(a:cmd, '\V' . l:app_dir . '/', '', 'g')
-    return 'clear;(cd ' . l:app_dir . ' && ' . l:new_cmd . ')'
-  endif
+  let l:prefixes = ['applications', 'data-pipelines', 'models']
+  for l:prefix in l:prefixes
+    let l:match = matchlist(a:cmd, '\v' . l:prefix . '/([^/]+)/')
+    if !empty(l:match) && a:cmd =~# 'pytest'
+      let l:app_dir = l:prefix . '/' . l:match[1]
+      let l:new_cmd = substitute(a:cmd, '\V' . l:app_dir . '/', '', 'g')
+      return 'clear;(cd ' . l:app_dir . ' && ' . l:new_cmd . ')'
+    endif
+  endfor
   return 'clear;' . a:cmd
 endfunction
 
