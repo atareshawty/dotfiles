@@ -182,5 +182,6 @@ compile-commands() {
 alias forge-build="(cd ~/projects/forge && catkin build && compile-commands)"
 alias clean-pycache="find . -type d -name '__pycache__' -exec rm -rf {} +"
 alias repl="./scripts/dev/repl.sh"
-alias code-repo-auth="source ~/projects/obsidian/scripts/dev/code-repo-auth.sh"
+alias code-repo-auth="~/projects/obsidian/scripts/dev/code-repo-auth.sh  --write-netrc"
+alias aws-sso="aws sso login --no-browser --use-device-code"
 . "$HOME/.cargo/env"
