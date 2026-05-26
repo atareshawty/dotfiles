@@ -17,6 +17,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'neovim/nvim-lspconfig', {'tag': 'v2.5.0'}
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'MeanderingProgrammer/render-markdown.nvim'
   Plug 'scrooloose/nerdtree'
   Plug 'stevearc/aerial.nvim', {'branch': 'nvim-0.9'}
   Plug 'sonph/onehalf', { 'rtp': 'vim' }
@@ -208,6 +209,14 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+-- Make treesitter use the markdown parser for the ghmarkdown filetype
+-- (set by the *.md autocmd above) so render-markdown.nvim can attach.
+vim.treesitter.language.register('markdown', 'ghmarkdown')
+
+require('render-markdown').setup({
+  file_types = { 'markdown', 'ghmarkdown' },
+})
 EOF
 
 " Custom foldtext to show first line and number of lines in fold
