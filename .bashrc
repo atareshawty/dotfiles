@@ -123,7 +123,7 @@ export EDITOR="$VISUAL"
 
 # Aliases
 alias be="bundle exec"
-alias flush-branches="git branch --merged develop | grep -v '\ develop$' | xargs --no-run-if-empty git branch -d && git remote prune origin"
+alias flush-branches="git branch --merged develop | grep -vE '^[*+]|^[[:space:]]+develop$' | xargs --no-run-if-empty git branch -d && git remote prune origin"
 alias la="ls -al"
 alias ls="ls -GFh"
 alias myip="curl -4 icanhazip.com"
