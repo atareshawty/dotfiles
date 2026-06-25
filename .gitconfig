@@ -21,6 +21,7 @@
   logfp = log --first-parent
   st = status
   wip = !git add -A && git commit -m "wip" --no-verify
+  wt = worktree
 [pull]
 	rebase = false
 [init]
