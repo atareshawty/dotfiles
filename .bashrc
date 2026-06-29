@@ -188,5 +188,103 @@ awssso() {
   aws sso login --no-browser --use-device-code "$@"
 }
 
+# Create (or reuse) a git worktree for reviewing a GitHub pull request, then open a
+# tmux window laid out for review. Idempotent: re-running on the same PR reuses the
+# worktree and selects the existing window.
+# Usage: review-pr <pr-url>
+review-pr() {
+  local url="$1"
+  if [ -z "$url" ]; then
+    echo "review-pr: usage: review-pr <pr-url>" >&2
+    return 1
+  fi
+
+  local num
+  num=$(gh pr view "$url" --json number --jq .number) || return 1
+
+  local root project path prompt_file
+  root=$(git rev-parse --show-toplevel) || return 1
+  project=$(basename "$root")
+  path="$(dirname "$root")/$project--review-$num"
+  prompt_file="$HOME/src/atareshawty/dotfiles/review-pr-prompt.md"
+
+  # Idempotent: only add the worktree / checkout if it doesn't already exist.
+  if git worktree list --porcelain | grep -qx "worktree $path"; then
+    echo "review-pr: reusing worktree $path"
+  else
+    git worktree add --detach "$path" || return 1
+    ( cd "$path" && gh pr checkout "$url" ) || return 1
+    # Carry over local (likely git-ignored) .claude settings into the worktree.
+    [ -d "$root/.claude" ] && cp -R "$root/.claude" "$path/"
+  fi
+
+  # Outside tmux: worktree is ready, nothing to lay out.
+  if [ -z "$TMUX" ]; then
+    echo "review-pr: worktree ready at $path (not in tmux, skipping window)"
+    return 0
+  fi
+
+  # Idempotent: reuse an existing review window for this PR (don't steal focus).
+  local win="$project--review-$num"
+  if tmux list-windows -F '#{window_name}' | grep -qx "$win"; then
+    echo "review-pr: window '$win' already open"
+    return 0
+  fi
+
+  # 4 even panes, then map ids to quadrants by screen position (tiled reorders panes
+  # by index, so resolve TL/TR/BL/BR from actual coordinates instead of split order).
+  # -d: build the window in the background, leave the user's current window focused.
+  tmux new-window -d -n "$win" -c "$path"
+  tmux split-window -t "$win" -c "$path"
+  tmux split-window -t "$win" -c "$path"
+  tmux split-window -t "$win" -c "$path"
+  tmux select-layout -t "$win" tiled
+  local panes
+  mapfile -t panes < <(tmux list-panes -t "$win" -F '#{pane_top} #{pane_left} #{pane_id}' | sort -k1,1n -k2,2n | awk '{print $3}')
+  tmux send-keys -t "${panes[0]}" 'vim' C-m              # top-left
+  tmux send-keys -t "${panes[1]}" "claude \"/review $url -- follow the review guidance in $prompt_file\"" C-m  # top-right
+  tmux select-pane -t "${panes[0]}"  # leave focus on the editor
+}
+
+# Tear down a worktree created by review-pr: kill its tmux window, remove the worktree,
+# and delete its local branch. Run from the main repo (not from inside the worktree).
+# Usage: review-pr-clean <pr-url>
+review-pr-clean() {
+  local url="$1"
+  if [ -z "$url" ]; then
+    echo "review-pr-clean: usage: review-pr-clean <pr-url>" >&2
+    return 1
+  fi
+
+  local num
+  num=$(gh pr view "$url" --json number --jq .number) || return 1
+
+  local root project path win
+  root=$(git rev-parse --show-toplevel) || return 1
+  project=$(basename "$root")
+  path="$(dirname "$root")/$project--review-$num"
+  win="$project--review-$num"
+
+  if ! git worktree list --porcelain | grep -qx "worktree $path"; then
+    echo "review-pr-clean: no worktree at $path" >&2
+    return 1
+  fi
+
+  # Capture the worktree's checked-out branch before removing it.
+  local branch
+  branch=$(git -C "$path" rev-parse --abbrev-ref HEAD 2>/dev/null)
+
+  if [ -n "$TMUX" ] && tmux list-windows -F '#{window_name}' | grep -qx "$win"; then
+    tmux kill-window -t "$win"
+  fi
+
+  # --force: the worktree always has untracked content (the copied .claude, review notes).
+  git worktree remove --force "$path" || return 1
+  if [ -n "$branch" ] && [ "$branch" != "HEAD" ]; then
+    git branch -D "$branch" || return 1
+  fi
+  echo "review-pr-clean: removed worktree $path${branch:+ and branch $branch}"
+}
+
 # alias aws-sso="aws sso login --no-browser --use-device-code"
 . "$HOME/.cargo/env"
