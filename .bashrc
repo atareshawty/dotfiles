@@ -242,7 +242,8 @@ review-pr() {
   local panes
   mapfile -t panes < <(tmux list-panes -t "$win" -F '#{pane_top} #{pane_left} #{pane_id}' | sort -k1,1n -k2,2n | awk '{print $3}')
   tmux send-keys -t "${panes[0]}" 'vim' C-m              # top-left
-  tmux send-keys -t "${panes[1]}" "claude \"/review $url -- follow the review guidance in $prompt_file\"" C-m  # top-right
+  tmux send-keys -t "${panes[1]}" "claude  --permission-mode acceptEdits \"/review $url -- follow the review guidance in $prompt_file\"" C-m  # top-right
+  tmux send-keys -t "${panes[2]}" 'uv sync --all-groups --all-packages --all-extras' C-m  # bottom-left
   tmux select-pane -t "${panes[0]}"  # leave focus on the editor
 }
 
