@@ -26,6 +26,12 @@ if [ ! -d ~/.bash-git-prompt ]; then
     cd ~/.bash-git-prompt && git fetch --tags && git checkout 2.7.1 && cd -
 fi
 
+# tmux-resurrect
+if [ ! -d ~/.tmux/plugins/tmux-resurrect ]; then
+    echo "Installing tmux-resurrect"
+    git clone https://github.com/tmux-plugins/tmux-resurrect.git ~/.tmux/plugins/tmux-resurrect --depth=1 --branch v4.0.0
+fi
+
 ./script/nodejs.sh
 
 echo "Creating symlinks for config files..."

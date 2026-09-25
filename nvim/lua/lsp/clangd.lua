@@ -29,7 +29,8 @@ lspconfig.clangd.setup({
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
     vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, opts)
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+    vim.keymap.set("n", "gr", require("lsp.references").without_tests, opts)
+    vim.keymap.set("n", "gR", vim.lsp.buf.references, opts)
     vim.keymap.set("n", "<LocalLeader>s", "<cmd>ClangdSwitchSourceHeader<CR>", opts)
   end,
 })

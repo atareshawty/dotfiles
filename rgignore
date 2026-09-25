@@ -1,0 +1,13 @@
+.git/
+target/
+node_modules/
+tmp/
+__pycache__/
+.venv/
+devel/
+.cache/
+build/
+logs/
+docs/_build/
+docs/packages/
+.claude/worktrees/

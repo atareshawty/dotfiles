@@ -53,5 +53,19 @@ if command -v fzf 2>&1 >/dev/null; then
 	eval "$(fzf --bash)"
 fi
 
+# apt against s3://path-apt-repo authenticates with AWS; feed it the current SSO session.
+# The s3 transport falls back to AWS_* env vars when /etc/apt/s3auth.conf has no AccessKeyId.
+apt-s3() {
+	sudo env $(aws configure export-credentials --format env-no-export) apt "$@"
+}
+
+# Merge catkin's per-package compile databases into one at the workspace root for clangd
+forge-cdb() {
+	local ws="${1:-$HOME/projects/forge}"
+	jq -s add "$ws"/build/*/compile_commands.json > "$ws/compile_commands.json.tmp" \
+		&& mv "$ws/compile_commands.json.tmp" "$ws/compile_commands.json" \
+		&& echo "$(jq length "$ws/compile_commands.json") entries"
+}
+
 source ~/.forge-aliases.bash
 . "$HOME/.cargo/env"

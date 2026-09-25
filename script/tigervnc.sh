@@ -2,7 +2,9 @@
 
 # Jeremy Villa's setup: https://pathrobotics.atlassian.net/wiki/spaces/~352604994/pages/3174138065/TigerVNC+setup#Intro, but scripted
 
-if command -v vncserver >/dev/null 2>&1; then
+# The package installs no `vncserver` binary, only Xtigervnc/tigervncsession
+# and vncserver@.service, so check the package instead.
+if dpkg -s tigervncserver >/dev/null 2>&1; then
   exit 0
 fi
 
@@ -36,7 +38,7 @@ sudo grep -qxF "$user" /etc/tigervnc/vncserver.users || echo "$user" | sudo tee 
 
 # Config
 mkdir -p ~/.config/tigervnc
-echo -e "session=gnome\nsecuritytypes=none\ngeometry=1920x1080\nlocalhost\nalwaysshared\nlog=*:syslog:100" | sudo tee ~/.config/tigervnc/config >/dev/null
+printf '%s\n' session=gnome securitytypes=none geometry=1920x1080 localhost alwaysshared 'log=*:syslog:100' >~/.config/tigervnc/config
 
 # Start your VNC server
 sudo systemctl start vncserver@:2

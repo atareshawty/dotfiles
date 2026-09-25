@@ -1,5 +1,6 @@
 call plug#begin('~/.config/nvim/plugged')
   Plug 'chaoren/vim-wordmotion'
+  Plug 'colonyops/diff-review', { 'commit': '17374a0e79db99f1c96924a8c17ffc4efadad437' } " v0.5.1
   Plug 'farmergreg/vim-lastplace'
   Plug 'github/copilot.vim'
   Plug 'nvim-lua/plenary.nvim'
@@ -135,7 +136,7 @@ colorscheme onedark
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " faster fzf fuzzy find respecting gitignore
-let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!target/*" --glob "!node_modules/" --glob "!tmp/" --glob "!__pycache__" --glob "!.venv/*" --glob "!**/.venv/**" --glob "!devel/**" --glob "!.cache/**" --glob "!build/**" --glob "!logs/**" --glob "!docs/_build/**" --glob "!docs/packages/**" --glob "!devel/"'
+let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hidden --follow --ignore-file ~/.rgignore'
 
 " ###### COC ######
 " use <tab> for trigger completion and navigate to the next complete item
@@ -260,3 +261,4 @@ lua require('lsp.ty')
 lua require('lsp.ruff')
 lua require('lsp.clangd')
 lua require('aerial_config')
+lua require('diff_review_config')
