@@ -7,3 +7,6 @@ ln -sfn ~/src/atareshawty/dotfiles/rgignore ~/.rgignore
 
 ln -sfn ~/src/atareshawty/dotfiles/nvim ~/.config/nvim
 ln -sfn ~/src/atareshawty/dotfiles/tmux.conf ~/.tmux.conf
+
+mkdir -p ~/.claude
+ln -sfn ~/src/atareshawty/dotfiles/review-pr-prompt.md ~/.claude/review-pr-prompt.md
